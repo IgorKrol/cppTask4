@@ -63,10 +63,13 @@ int main() {
 		ConstantGuesser gNegative123{"-123"};
 		ConstantGuesser gLetterNum{"123c45"};
 
+		testcase.setname("Constructor tests")
 		.CHECK_EQUAL(c1234.choose(), "1234")
 		.CHECK_EQUAL(g1234.choose(), "1234")
 		.CHECK_EQUAL(c1234.choose(), g1234.choose())
+		;
 
+		testcase.setname("calculateBullAndPgia function tests")
 		.CHECK_OUTPUT(calculateBullAndPgia("1234","1243"), "2,2")      // 2 bull, 2 pgia
 		.CHECK_OUTPUT(calculateBullAndPgia("1234","1423"), "1,3")      // 1 bull, 3 pgia
 		.CHECK_OUTPUT(calculateBullAndPgia("1234","1253"), "2,1")      // 2 bull, 1 pgia
@@ -79,8 +82,9 @@ int main() {
 		.CHECK_OUTPUT(calculateBullAndPgia("2134","1111"), "0,0")      // bull and pgia together?
 
 		.CHECK_OUTPUT(calculateBullAndPgia(c12345.choose(),g12345.choose()), "0,0")      // 0 bull, 0 pgia, using choose method
-
-		testcase.setname("Checking for Exceptions");
+		;
+		
+		testcase.setname("Checking for Exceptions")
 		.CHECK_THROWS(play(cA, g1, 1, 1))			// letters instead of numbers
 		.CHECK_THROWS(play(cA, gA, 1, 1))			// letters instead of numbers
 
@@ -92,9 +96,11 @@ int main() {
 
 		.CHECK_THROWS(play(cNegative123, g123, 4, 1))					// negative number
 		.CHECK_THROWS(play(cNegative123, gNegative123, 4, 1))			// negative number with the "correct" guesser
-		
+
 		.CHECK_THROWS(play(cLetterNum, gLetterNum, 4, 1))				// letter between both chooser and guesser
 
+		.CHECK_THROWS(play(c1234, g1234, 5, 10))			// wrong length of code (5 instead of 4)
+		;
 
 
 
