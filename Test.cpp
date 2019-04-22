@@ -53,14 +53,19 @@ int main() {
 		ConstantChooser c{""};
 		ConstantChooser cSpace{"123 45"};
 		ConstantChooser cLetterNum{"123c45"};
-		ConstantChooser cNegative{"-123"};
-		ConstantGuesser g{"1"};
-		ConstantGuesser g123{"123"};
-		ConstantGuesser gM123{"-123"};
+		ConstantChooser cNegative123{"-123"};
 
-		.CHECK_EQUAL(c1234.choose(), "1234");
-		.CHECK_EQUAL(g1234.choose(), "1234");
-		.CHECK_EQUAL(c1234.choose(), g1234.choose());
+		ConstantGuesser g{""};
+		ConstantGuesser g1{"1"};
+		ConstantGuesser gA{"a"};
+		ConstantGuesser gSpace{"123 45"};
+		ConstantGuesser g123{"123"};
+		ConstantGuesser gNegative123{"-123"};
+		ConstantGuesser gLetterNum{"123c45"};
+
+		.CHECK_EQUAL(c1234.choose(), "1234")
+		.CHECK_EQUAL(g1234.choose(), "1234")
+		.CHECK_EQUAL(c1234.choose(), g1234.choose())
 
 		.CHECK_OUTPUT(calculateBullAndPgia("1234","1243"), "2,2")      // 2 bull, 2 pgia
 		.CHECK_OUTPUT(calculateBullAndPgia("1234","1423"), "1,3")      // 1 bull, 3 pgia
@@ -76,11 +81,21 @@ int main() {
 		.CHECK_OUTPUT(calculateBullAndPgia(c12345.choose(),g12345.choose()), "0,0")      // 0 bull, 0 pgia, using choose method
 
 		testcase.setname("Checking for Exceptions");
-		.CHECK_THROWS(play(cA, g, 1, 1));			// letters instead of numbers
-		.CHECK_THROWS(play(c, g, 1, 1));			// empty string
-		.CHECK_THROWS(play(cSpace, g12345, 6, 1));			// space between the code's numbers
-		.CHECK_THROWS(play(cNegative, g123, 4, 1));			// negative number
-		.CHECK_THROWS(play(cNegative, gM123, 4, 1));			// negative number with the "correct" guesser
+		.CHECK_THROWS(play(cA, g1, 1, 1))			// letters instead of numbers
+		.CHECK_THROWS(play(cA, gA, 1, 1))			// letters instead of numbers
+
+		.CHECK_THROWS(play(c, g1, 1, 1))			// empty string
+		.CHECK_THROWS(play(c, g, 1, 1))				// empty string with empty string
+
+		.CHECK_THROWS(play(cSpace, g12345, 6, 1))			// space between the code's numbers
+		.CHECK_THROWS(play(cSpace, gSpace, 6, 1))			// space between the code's numbers, both on chooser and guesser
+
+		.CHECK_THROWS(play(cNegative123, g123, 4, 1))					// negative number
+		.CHECK_THROWS(play(cNegative123, gNegative123, 4, 1))			// negative number with the "correct" guesser
+		
+		.CHECK_THROWS(play(cLetterNum, gLetterNum, 4, 1))				// letter between both chooser and guesser
+
+
 
 
 
