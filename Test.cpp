@@ -48,6 +48,32 @@ int main() {
 			testcase.CHECK_EQUAL(play(randy, smarty, 4, 100)<=10, true);  // smarty should always win in at most 10 turns!
 		}
 
+		/////////////////////////// MY TESTS ///////////////////////////
+		ConstantChooser cA{"a"};
+		ConstantChooser c{""};
+		ConstantChooser cSpace{"123 45"};
+		ConstantChooser cLetterNum{"123c45"};
+		ConstantChooser cNegative{"-123"};
+		ConstantGuesser g{"1"};
+		ConstantGuesser g123{"123"};
+		ConstantGuesser gM123{"-123"};
+
+		.CHECK_OUTPUT(calculateBullAndPgia("1234","1243"), "2,2")      // 2 bull, 2 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("1234","1423"), "1,3")      // 1 bull, 3 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("1234","5326"), "1,3")      // 0 bull, 2 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("1234","5678"), "0,0")      // 0 bull, 0 pgia
+
+		.CHECK_OUTPUT(calculateBullAndPgia(c12345.choose(),g12345.choose()), "0,0")      // 0 bull, 0 pgia, using choose method
+
+		testcase.setname("Checking for Exceptions");
+		.CHECK_THROWS(play(cA, g, 1, 1));			// letters instead of numbers
+		.CHECK_THROWS(play(c, g, 1, 1));			// empty string
+		.CHECK_THROWS(play(cSpace, g12345, 6, 1));			// space between the code's numbers
+		.CHECK_THROWS(play(cNegative, g123, 4, 1));			// negative number
+		.CHECK_THROWS(play(cNegative, gM123, 4, 1));			// negative number with the "correct" guesser
+
+
+
     grade = testcase.grade();
 	} else {
 		testcase.print_signal(signal);
