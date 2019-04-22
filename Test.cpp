@@ -58,10 +58,20 @@ int main() {
 		ConstantGuesser g123{"123"};
 		ConstantGuesser gM123{"-123"};
 
+		.CHECK_EQUAL(c1234.choose(), "1234");
+		.CHECK_EQUAL(g1234.choose(), "1234");
+		.CHECK_EQUAL(c1234.choose(), g1234.choose());
+
 		.CHECK_OUTPUT(calculateBullAndPgia("1234","1243"), "2,2")      // 2 bull, 2 pgia
 		.CHECK_OUTPUT(calculateBullAndPgia("1234","1423"), "1,3")      // 1 bull, 3 pgia
-		.CHECK_OUTPUT(calculateBullAndPgia("1234","5326"), "1,3")      // 0 bull, 2 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("1234","1253"), "2,1")      // 2 bull, 1 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("1234","1235"), "3,0")      // 3 bull, 0 pgia
+
+		.CHECK_OUTPUT(calculateBullAndPgia("1234","5326"), "0,2")      // 0 bull, 2 pgia
 		.CHECK_OUTPUT(calculateBullAndPgia("1234","5678"), "0,0")      // 0 bull, 0 pgia
+
+		.CHECK_OUTPUT(calculateBullAndPgia("1234","1111"), "0,0")      // bull and pgia together?
+		.CHECK_OUTPUT(calculateBullAndPgia("2134","1111"), "0,0")      // bull and pgia together?
 
 		.CHECK_OUTPUT(calculateBullAndPgia(c12345.choose(),g12345.choose()), "0,0")      // 0 bull, 0 pgia, using choose method
 
