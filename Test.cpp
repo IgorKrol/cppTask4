@@ -66,9 +66,9 @@ int main() {
 		ConstantGuesser gLetterNum{"123c45"};
 
 		testcase.setname("Constructor tests")
-		.CHECK_EQUAL(c1234.choose(4), "1234")
-		.CHECK_EQUAL(g1234.choose(4), "1234")
-		.CHECK_EQUAL(c1234.choose(4), g1234.choose(4))
+		.CHECK_EQUAL(c1234.choose(4), 1234)
+		.CHECK_EQUAL(g1234.choose(4), 1234)
+		.CHECK_EQUAL(c1234.choose(4), g1234.guess())
 		;
 
 		testcase.setname("calculateBullAndPgia tests")
@@ -95,7 +95,7 @@ int main() {
 		.CHECK_OUTPUT(calculateBullAndPgia("2134","1111"), "0,0")      // bull and pgia together?
 		.CHECK_OUTPUT(calculateBullAndPgia("1111","1111"), "4,0")      // bull and pgia together?
 
-		.CHECK_OUTPUT(calculateBullAndPgia(c12345.choose(5),g12345.choose(5)), "0,0")      // 0 bull, 0 pgia, using choose method
+		.CHECK_OUTPUT(calculateBullAndPgia(c12345.choose(5),g12345.guess()), "0,0")      // 0 bull, 0 pgia, using choose method
 		;
 
 		testcase.setname("Playing with Dummy choosers and guessers tests")
