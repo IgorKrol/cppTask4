@@ -67,7 +67,7 @@ int main() {
 
 		testcase.setname("Constructor tests")
 		.CHECK_EQUAL(c1234.choose(4), 1234)
-		.CHECK_EQUAL(g1234.choose(4), 1234)
+		.CHECK_EQUAL(g1234.guess(), 1234)
 		.CHECK_EQUAL(c1234.choose(4), g1234.guess())
 		;
 
@@ -99,21 +99,21 @@ int main() {
 		;
 
 		testcase.setname("Playing with Dummy choosers and guessers tests")
-		.CHECK_OUTPUT(play(c1234, g1234, 4,1), 1)      // simple check
-		.CHECK_OUTPUT(play(c1234, g1234, 4,5), 1)      // simple check with more than 1 turn using dummy chooser&guesser
-		.CHECK_OUTPUT(play(c1234, g1111, 4,10), 11)      // simple check with wrong guesser
-		.CHECK_OUTPUT(play(c1111, g1111, 4,1), 1)      // same number with repitition
+		.CHECK_OUTPUT(play(c1234, g1234, 4,1), "1")      // simple check
+		.CHECK_OUTPUT(play(c1234, g1234, 4,5), "1")      // simple check with more than 1 turn using dummy chooser&guesser
+		.CHECK_OUTPUT(play(c1234, g1111, 4,10), "11")      // simple check with wrong guesser
+		.CHECK_OUTPUT(play(c1111, g1111, 4,1), "1")      // same number with repitition
 		;
 
 		testcase.setname("Playing with smart choosers tests")
 		RandomChooser Igor;
 		SmartGuesser Amit;
 		for (uint i=0; i<100; ++i) {
-			testcase.CHECK_EQUAL(play(Igor, Amit, 4, 100)<=10, true);  // smarty should always win in at most 10 turns!
+			testcase.CHECK_EQUAL(play(Igor, Amit, 4, 100)<=10, "true");  // smarty should always win in at most 10 turns!
 		}
 
 		for (uint i=0; i<100; ++i) {
-			testcase.CHECK_EQUAL(play(c1234, Amit, 4, 100)<=10, true);  // smarty should always win in at most 10 turns!
+			testcase.CHECK_EQUAL(play(c1234, Amit, 4, 100)<=10, "true");  // smarty should always win in at most 10 turns!
 		}
 		;
 
