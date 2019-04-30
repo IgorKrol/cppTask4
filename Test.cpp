@@ -109,16 +109,16 @@ int main() {
 		RandomChooser Igor;	//choose random numbers with different length.
 		SmartGuesser Amit;	//smart Gueeser, after finish should be reusable
 		for (uint i=0; i<100; ++i) {
-			testcase.CHECK_EQUAL(play(Igor.choose(3), Amit, 3, 100)<=100, true);  // smarty should always win in at most 100 turns!
+			testcase.CHECK_EQUAL(play(Igor, Amit, 3, 100)<=100, true);  // smart guesser for number's length = 3
 		}
 		for (uint i=0; i<100; ++i) {
-			testcase.CHECK_EQUAL(play(Igor.choose(4), Amit, 4, 100)<=100, true);  // smarty should always win in at most 100 turns!
+			testcase.CHECK_EQUAL(play(Igor, Amit, 4, 100)<=100, true);  // smart guesser for number's length = 4
 		}
 		for (uint i=0; i<100; ++i) {
-			testcase.CHECK_EQUAL(play(Igor.choose(5), Amit, 5, 100)<=100, true);  // smarty should always win in at most 100 turns!
+			testcase.CHECK_EQUAL(play(Igor, Amit, 5, 100)<=100, true);  // smart guesser for number's length = 5
 		}
 		for (uint i=0; i<100; ++i) {
-			testcase.CHECK_EQUAL(play(Igor.choose(6), Amit, 6, 100)<=100, true);  // smarty should always win in at most 100 turns!
+			testcase.CHECK_EQUAL(play(Igor, Amit, 6, 100)<=100, true);  // smart guesser for number's length = 6
 		}
 		for (uint i=0; i<100; ++i) {
 			testcase.CHECK_EQUAL(play(c1234, Amit, 4, 100)<=100, true);  // smarty should always win in at most 100 turns!
