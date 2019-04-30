@@ -95,7 +95,7 @@ int main() {
 		.CHECK_OUTPUT(calculateBullAndPgia("2134","1111"), "1,0")      // bull and pgia together?
 		.CHECK_OUTPUT(calculateBullAndPgia("1111","1111"), "4,0")      // bull and pgia together?
 
-		.CHECK_OUTPUT(calculateBullAndPgia(c12345.choose(5),g12345.guess(4)), "0,0")      // 0 bull, 0 pgia, using choose method
+		.CHECK_OUTPUT(calculateBullAndPgia(c12345.choose(5),g12345.guess(), "0,0")      // 0 bull, 0 pgia, using choose method
 		;
 
 		testcase.setname("Playing with Dummy choosers and guessers tests")
