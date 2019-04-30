@@ -106,18 +106,30 @@ int main() {
 		;
 
 		testcase.setname("Playing with smart choosers tests");
-		RandomChooser Igor;
-		SmartGuesser Amit;
+		RandomChooser Igor(3);	//choose random numbers with different length.
+		RandomChooser Igor1(4);	
+		RandomChooser Igor2(5);
+		RandomChooser Igor3(6);
+		SmartGuesser Amit;	//smart Gueeser, after finish should be reusable
 		for (uint i=0; i<100; ++i) {
-			testcase.CHECK_EQUAL(play(Igor, Amit, 4, 100)<=100, true);  // smarty should always win in at most 100 turns!
+			testcase.CHECK_EQUAL(play(Igor, Amit, 3, 100)<=100, true);  // smarty should always win in at most 100 turns!
 		}
-
+		for (uint i=0; i<100; ++i) {
+			testcase.CHECK_EQUAL(play(Igor1, Amit, 4, 100)<=100, true);  // smarty should always win in at most 100 turns!
+		}
+		for (uint i=0; i<100; ++i) {
+			testcase.CHECK_EQUAL(play(Igor2, Amit, 5, 100)<=100, true);  // smarty should always win in at most 100 turns!
+		}
+		for (uint i=0; i<100; ++i) {
+			testcase.CHECK_EQUAL(play(Igor3, Amit, 6, 100)<=100, true);  // smarty should always win in at most 100 turns!
+		}
 		for (uint i=0; i<100; ++i) {
 			testcase.CHECK_EQUAL(play(c1234, Amit, 4, 100)<=100, true);  // smarty should always win in at most 100 turns!
 		}
 		
 
 		testcase.setname("Checking for Exceptions")
+			
 		.CHECK_THROWS(play(cA, g1, 1, 1))			// letters instead of numbers
 		.CHECK_THROWS(play(cA, gA, 1, 1))			// letters instead of numbers
 
