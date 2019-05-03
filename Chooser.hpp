@@ -2,16 +2,25 @@
 
 #include <string>
 
-// #include "Guesser.hpp"
 #include "calculate.hpp"
-// #include "SmartGuesser.hpp"
 
 using namespace std;
-// using namespace bullpgia;
 
 namespace bullpgia{
+
 	class Chooser{
+
+	private:
+		string choice;
+
 	public:
+		Chooser(){
+			choice = "";
+		}
+
+		Chooser(const string& str){
+			choice = str;
+		}
 
 		virtual string choose(uint length) = 0;
 	};
