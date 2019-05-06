@@ -33,7 +33,6 @@ void SmartGuesser::learn(string str){
 	}
 	else if(this->lastBull > bulls){		// last change lowered us 1 bull
 		this->myGuess[this->index] -= 1;
-		this->index++;
 	}
 	else{									// we found 1 bull
 		this->index++;
