@@ -108,9 +108,9 @@ int main() {
 		testcase.setname("Playing with smart choosers tests");
 		RandomChooser Igor;	//choose random numbers with different length.
 		SmartGuesser Amit;	//smart Gueeser, after finish should be reusable
-		// for (uint i=0; i<100; ++i) {
-		// 	testcase.CHECK_EQUAL(play(Igor, Amit, 3, 100)<=100, true);  // smart guesser for number's length = 3
-		// }
+		for (uint i=0; i<5; ++i) {
+			testcase.CHECK_EQUAL(play(Igor, Amit, 3, 100)<=100, true);  // smart guesser for number's length = 3
+		}
 		// for (uint i=0; i<100; ++i) {
 		// 	testcase.CHECK_EQUAL(play(Igor, Amit, 4, 100)<=100, true);  // smart guesser for number's length = 4
 		// }
@@ -127,8 +127,8 @@ int main() {
 
 		testcase.setname("Checking for Exceptions")
 			
-		.CHECK_THROWS(play(cA, g1, 1, 1))			// letters instead of numbers
-		.CHECK_THROWS(play(cA, gA, 1, 1))			// letters instead of numbers
+		// .CHECK_THROWS(play(cA, g1, 1, 1))			// letters instead of numbers
+		// .CHECK_THROWS(play(cA, gA, 1, 1))			// letters instead of numbers
 
 		// .CHECK_THROWS(play(c, g1, 1, 1))			// empty string
 		// .CHECK_THROWS(play(c, g, 1, 1))				// empty string with empty string

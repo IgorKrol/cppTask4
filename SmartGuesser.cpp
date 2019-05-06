@@ -1,5 +1,6 @@
 
 #include "SmartGuesser.hpp"
+#include <iostream>
 #include <string.h>
 
 using namespace bullpgia;
@@ -9,15 +10,18 @@ string SmartGuesser::guess(){
 }
 
 void SmartGuesser::startNewGame(uint len){
+	this->myGuess="";
 	for(int i =0; i < len; i++){
 		this->myGuess += '0';
 	}
+	this->index=0;
+	this->lastBull=0;
 }
 
 void SmartGuesser::learn(string str){
 
-	int splitIndex = str.find(',');
-	int bulls = stoi(str.substr(0, splitIndex-1));
+	// int splitIndex = str.find(',');
+	int bulls = stoi(str);
 
 	if(bulls == this->index){				// current bulls count are the same as before
 		this->myGuess[this->index] += 1;
@@ -29,5 +33,6 @@ void SmartGuesser::learn(string str){
 	else{									// we found 1 bull
 		this->index++;
 	}
-	
+	lastBull=bulls;
+	// cout<<bulls<<endl;
 };
