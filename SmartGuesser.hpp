@@ -10,13 +10,13 @@ using namespace bullpgia;
 namespace bullpgia{
 	class SmartGuesser : public Guesser{
 
-		string myGuess = "";
-		// int currentBull = 0;
-		int index = 0;
-		int lastBull = 0;
-
+		string myGuess;
+		int index;
+		int lastBull;
+		bool flag;
+		
 	public:
-		SmartGuesser(){};
+		SmartGuesser():index(0),lastBull(0),flag(true){};
 
 		virtual string guess() override;
 		virtual void startNewGame(uint) override;
