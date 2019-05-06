@@ -2,8 +2,6 @@
 
 #include <string>
 
-#include "calculate.hpp"
-
 using namespace std;
 
 namespace bullpgia{
@@ -14,7 +12,7 @@ namespace bullpgia{
 		uint length;
 
 	public:
-		Guesser(){}
+
 		virtual string guess() = 0;
 		virtual void startNewGame(uint){}
 		virtual void learn(string){}
