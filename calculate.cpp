@@ -1,6 +1,6 @@
 
 #include <string.h>
-
+#include <iostream>
 #include "calculate.hpp"
 
 using namespace std;
@@ -12,9 +12,9 @@ string bullpgia::calculateBullAndPgia(string codeMaker, string codeBreaker){
 	string pgiaMaker="",pgiaBreaker="";
 	
 	////// ERRORS: different length, illegal chars //////
-	if (codeMaker!=codeBreaker){throw string("ERROR: NOT SAME LENGTH!");}
-	if (codeMaker.find_first_not_of("0123456789")==string::npos){throw string("ERROR: CHOSEN STRING MUST CONTAIN DIGITS ONLY!");}
-	if (codeBreaker.find_first_not_of("0123456789")==string::npos){throw string("ERROR: GUESSER STRING MUST CONTAIN DIGITS ONLY!");}
+	// if (codeMaker!=codeBreaker){throw string("ERROR: NOT SAME LENGTH!");}
+	// if (codeMaker.find_first_not_of("0123456789")==string::npos){throw string("ERROR: CHOSEN STRING MUST CONTAIN DIGITS ONLY!");}
+	// if (codeBreaker.find_first_not_of("0123456789")==string::npos){throw string("ERROR: GUESSER STRING MUST CONTAIN DIGITS ONLY!");}
 	
 
 	for (int i = 0; i < codeMaker.length(); i++)
@@ -32,11 +32,14 @@ string bullpgia::calculateBullAndPgia(string codeMaker, string codeBreaker){
 		for (int j = 0; j < pgiaBreaker.length(); j++)
 		{
 			if(pgiaMaker[i]==pgiaBreaker[j]){
+				pgiaMaker[i]='*';
+				pgiaBreaker[j]='a';
 				pgia++;
 				break;
 			}
 		}
 	}
 	string res = to_string(bull)+","+to_string(pgia);
+	// cout<<res<<endl;
 	return res;
 }
