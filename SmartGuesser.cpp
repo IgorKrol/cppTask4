@@ -17,7 +17,7 @@ void SmartGuesser::startNewGame(uint len){
 void SmartGuesser::learn(string str){
 
 	int splitIndex = str.find(',');
-	int bulls = stoi(str.substr(0, splitIndex-1), NULL, 10);
+	int bulls = stoi(str.substr(0, splitIndex-1));
 
 	if(bulls == this->index){				// current bulls count are the same as before
 		this->myGuess[this->index] += 1;
